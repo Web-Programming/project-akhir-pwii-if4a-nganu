@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\PngToJpgController;
+use App\Http\Controllers\indexFileController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +18,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post("/proses", [PngToJpgController::class, 'index']);
+Route::get('/index', function () {
+    return view("converter.index");
+});
 
-Route::view("/PngToJpg", "converter.pngtojpg");
-     
+Route::get('/convert/{imageName?}/{imageType?}', function ($imageName, $imageType ) {
+    return view("converter.convert", ['imageName' => $imageName, 'imageType' => $imageType]);
+})->name('convert');
+
+Route::get('/halo/{nama}', function ($nama) {
+    echo "<h1?>Halo $nama</h1>";
+});
+
+Route::post("/indexFile", [indexFileController::class, 'indexFile']);
+
+use App\Http\Controllers\PreConvert;
+Route::post('/converted-image', [PreConvert::class, 'convert'])->name('converted-image');
+
+use App\Http\Controllers\downloadController;
+Route::get('/download', [downloadController::class, 'dwnController'])->name('download');
+
