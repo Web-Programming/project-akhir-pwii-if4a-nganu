@@ -4,6 +4,7 @@
     //define types as an associative array
     $types = [
         'png' => 'PNG',
+        'gif' => 'GIF',
         'jpg' => 'JPG',
     ];
 @endphp

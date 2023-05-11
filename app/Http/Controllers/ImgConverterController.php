@@ -32,6 +32,11 @@ class ImgConverterController extends Controller
 			imageJpeg($binary, $target_dir.$img_name.'.'.$convert_type, $image_quality);
 			return $img_name.'.'.$convert_type;
 		}		
+		if($convert_type == 'gif'){
+			$binary = imagecreatefromstring(file_get_contents($image));
+			imagegif($binary, $target_dir.$img_name.'.'.$convert_type);
+			return $img_name.'.'.$convert_type;
+		}
 		return false; 
 	}
 
@@ -104,7 +109,7 @@ class ImgConverterController extends Controller
 	}
 	
 	public static function check_only_allowed_image_types($imagetype){
-		if($imagetype != "jpg" && $imagetype != "png" && $imagetype != "jpeg") {
+		if($imagetype != "jpg" && $imagetype != "png" && $imagetype != "jpeg " && $imagetype != "gif") {
 			return false;
 		}
 		return true;

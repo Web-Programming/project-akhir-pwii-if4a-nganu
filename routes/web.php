@@ -22,6 +22,7 @@ Route::get('/index', function () {
     return view("converter.index");
 });
 
+
 Route::get('/convert/{imageName?}/{imageType?}', function ($imageName, $imageType ) {
     return view("converter.convert", ['imageName' => $imageName, 'imageType' => $imageType]);
 })->name('convert');
@@ -37,4 +38,7 @@ Route::post('/converted-image', [PreConvert::class, 'convert'])->name('converted
 
 use App\Http\Controllers\downloadController;
 Route::get('/download', [downloadController::class, 'dwnController'])->name('download');
+
+use App\Http\Controllers\shareController;
+Route::get('/share', [shareController::class, 'share'])->name('share');
 
