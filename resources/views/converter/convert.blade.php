@@ -6,10 +6,11 @@
         'png' => 'PNG',
         'gif' => 'GIF',
         'jpg' => 'JPG',
+        'webp' => 'WEBP',
     ];
 @endphp
 
-<form method="post" action="{{ route('converted-image', ['imageName' => $imageName]) }}">
+<form method="post" action="{{ route('converted-image', ['imageName' => $imageName, 'imageType' => $imageType]) }}">
     @csrf
     <table width="500" align="center">
         <tr>

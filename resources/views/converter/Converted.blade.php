@@ -2,7 +2,7 @@
     <tr>
         <td align="center">
             Image Converted to {{ ucfirst($convert_type) }}
-            <img src="uploads/{{ $imageName }}" alt="Converted Image" />
+            <img src="uploads/{{ $only_name.'.'.$convert_type }}" alt="Converted Image" />
         </td>
     </tr>
     <tr>

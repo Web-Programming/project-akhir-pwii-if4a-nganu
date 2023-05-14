@@ -13,5 +13,5 @@
 <div class="share-buttons">
   <h3>Share this post:</h3>
 
-  {!!$shareButtons !!}
+  {!! $shareButtons !!}
 </div>

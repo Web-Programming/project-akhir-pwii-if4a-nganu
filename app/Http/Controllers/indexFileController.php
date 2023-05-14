@@ -13,8 +13,8 @@ class indexFileController extends Controller
             $upload = $ImgConverter::upload_image($_FILES, 'uploads', 'fileToUpload');
             
             if($upload){
-                $imageName = urlencode($upload[0]);
-                $imageType = urlencode($upload[1]);
+                $imageName = $upload[0];
+                $imageType = $upload[1];
                 
                 if($imageType == 'jpeg'){
                     $imageType = 'jpg';

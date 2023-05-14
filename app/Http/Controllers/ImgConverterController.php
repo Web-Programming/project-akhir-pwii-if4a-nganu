@@ -37,6 +37,12 @@ class ImgConverterController extends Controller
 			imagegif($binary, $target_dir.$img_name.'.'.$convert_type);
 			return $img_name.'.'.$convert_type;
 		}
+		if($convert_type == 'webp'){
+			$binary = imagecreatefromstring(file_get_contents($image));
+			imagewebp($binary, $target_dir.$img_name.'.'.$convert_type);
+			return $img_name.'.'.$convert_type;
+		}
+
 		return false; 
 	}
 
@@ -75,7 +81,7 @@ class ImgConverterController extends Controller
 		// Allow certain file formats
 		$file_type = static::check_only_allowed_image_types($imageFileType);
 		if(!$file_type){
-			echo "You cannot upload other than JPG, JPEG, and PNG";
+			echo "You cannot upload other than JPG, JPEG, WEBP, and PNG";
 			return false;
 		}
 		
@@ -109,7 +115,7 @@ class ImgConverterController extends Controller
 	}
 	
 	public static function check_only_allowed_image_types($imagetype){
-		if($imagetype != "jpg" && $imagetype != "png" && $imagetype != "jpeg " && $imagetype != "gif") {
+		if($imagetype != "jpg" && $imagetype != "png" && $imagetype != "jpeg " && $imagetype != "gif" && $imagetype != "webp") {
 			return false;
 		}
 		return true;
@@ -117,8 +123,8 @@ class ImgConverterController extends Controller
 	
 	public static function get_dynamic_name($basename, $imagetype){
 		$only_name = basename($basename, '.'.$imagetype); // remove extension
-		// $combine_time = $only_name.'_'.time();
-		$new_name = $only_name.'.'.$imagetype;
+		$combine_time = $only_name.'_'.time();
+		$new_name = $combine_time.'.'.$imagetype;
 		return $new_name;
 	}
 	
