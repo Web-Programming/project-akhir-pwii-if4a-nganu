@@ -3,32 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\ImgConverterController;
 
 class PreConvert extends Controller
 {
     public function convert(Request $request)
     {
-        $Converter = app('App\Http\Controllers\ImgConverterController');
+        $Converter = new ImgConverterController();
 
-        $convert_type = $request->input('convert_type');
+        $convertType = $request->input('convert_type');
         $imageName = $request->query('imageName');
 
-        $target_dir = 'uploads';
+        $targetDir = 'uploads';
 
-        //convert image to the specified type
-        $image = $Converter::convert_image($convert_type, $target_dir, $imageName);
+        // Convert image to the specified type
+        $image = $Converter->convertImage($convertType, $targetDir, $imageName);
 
-        //get only name
-        $only_name = $Converter::remove_extension_from_image($imageName);
+        // Get only name
+        $onlyName = $Converter->removeExtensionFromImage($imageName);
 
-        //if converted activate download link
+        // If converted, activate download link
         if ($image) {
             return view('converter.Converted', [
-                'convert_type' => ucfirst($convert_type),
-                'target_dir' => $target_dir,
+                'convert_type' => ucfirst($convertType),
+                'target_dir' => $targetDir,
                 'image' => $image,
                 'imageName' => $imageName,
-                'only_name' => $only_name
+                'only_name' => $onlyName
             ]);
         } else {
             return back()->withInput()->withErrors(['error' => 'Failed to convert image']);

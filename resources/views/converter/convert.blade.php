@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/style2.css') }}" />
 
 @php
-    //define types as an associative array
+    // Define types as an associative array
     $types = [
         'png' => 'PNG',
         'gif' => 'GIF',
@@ -23,7 +23,7 @@
             <td align="center">
                 Convert To:
                 <select name="convert_type">
-                    @foreach($types as $key=>$type)
+                    @foreach($types as $key => $type)
                         @if($key !== $imageType)
                             <option value="{{ $key }}">{{ $type }}</option>
                         @endif

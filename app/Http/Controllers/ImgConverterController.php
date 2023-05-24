@@ -3,134 +3,190 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File; 
+
 
 class ImgConverterController extends Controller
 {
-    public static function convert_image($convert_type, $target_dir, $image_name, $image_quality=100){
-        $target_dir = public_path('/'.$target_dir.'/');
-		$target_dir = "$target_dir/";
-		
-		$image = $target_dir.$image_name;
-		
-		//remove extension from image;
-		$img_name = static::remove_extension_from_image($image);
-		
-		//to png
-		if($convert_type == 'png'){
-			$binary = imagecreatefromstring(file_get_contents($image));
-			//third parameter for ImagePng is limited to 0 to 9
-			//0 is uncompressed, 9 is compressed
-			//so convert 100 to 2 digit number by dividing it by 10 and minus with 10
-			$image_quality = floor(10 - ($image_quality / 10));
-			ImagePNG($binary, $target_dir.$img_name.'.'.$convert_type, $image_quality);
-			return $img_name.'.'.$convert_type;
-		}
-		
-		//to jpg
-		if($convert_type == 'jpg'){
-			$binary = imagecreatefromstring(file_get_contents($image));
-			imageJpeg($binary, $target_dir.$img_name.'.'.$convert_type, $image_quality);
-			return $img_name.'.'.$convert_type;
-		}		
-		if($convert_type == 'gif'){
-			$binary = imagecreatefromstring(file_get_contents($image));
-			imagegif($binary, $target_dir.$img_name.'.'.$convert_type);
-			return $img_name.'.'.$convert_type;
-		}
-		if($convert_type == 'webp'){
-			$binary = imagecreatefromstring(file_get_contents($image));
-			imagewebp($binary, $target_dir.$img_name.'.'.$convert_type);
-			return $img_name.'.'.$convert_type;
-		}
+    public static function convertImage($convertType, $targetDir, $imageName, $imageQuality = 100)
+    {
+        $targetDir = public_path('/' . $targetDir . '/');
+        $targetDir = "$targetDir/";
 
-		return false; 
-	}
+        $image = $targetDir . $imageName;
+
+        // Remove extension from image;
+        $imgName = static::removeExtensionFromImage($image);
+
+        // Convert to png
+        if ($convertType === 'png') {
+            $binary = imagecreatefromstring(file_get_contents($image));
+            // Third parameter for ImagePng is limited to 0 to 9
+            // 0 is uncompressed, 9 is compressed
+            // Convert 100 to 2 digit number by dividing it by 10 and subtracting 10
+            $imageQuality = floor(10 - ($imageQuality / 10));
+            imagepng($binary, $targetDir . $imgName . '.' . $convertType, $imageQuality);
+            
+            File::delete($image);
+            return $imgName . '.' . $convertType;
+        }
+
+        // Convert to jpg
+        if ($convertType === 'jpg') {
+            // Load gambar nya
+            $binary = imagecreatefromstring(file_get_contents($image));
+            // $image = imagecreatefrompng(file_get_contents($binary));
+
+            // Buat nama JPG baru
+            $new_name = $imgName . ".jpg";
+
+            // Membuat gambar jpg berwarna putih yang berukuran sama dengan png
+            $jpg_image = imagecreatetruecolor(imagesx($binary), imagesy($binary));
+            $white = imagecolorallocate($jpg_image, 255, 255, 255);
+            imagefill($jpg_image, 0, 0, $white);
+
+            // Timpa gambar putih dengan PNG agar jika ada bagian transparentnya background menjadi putih
+            imagecopy($jpg_image, $binary, 0, 0, 0, 0, imagesx($binary), imagesy($binary));
+            imagejpeg($jpg_image, $targetDir . $imgName . '.' . $convertType, $imageQuality);
+
+            // imagejpeg($binary, $targetDir . $imgName . '.' . $convertType, $imageQuality);
+            File::delete($image);
 
 
-    public static function upload_image($files, $target_dir, $input_name){
-        $target_dir = public_path('/'.$target_dir.'/');
-		
-		$target_dir = "$target_dir/";
-		
-		//get the basename of the uploaded file
-		$base_name = basename($files[$input_name]["name"]);
+            return $imgName . '.' . $convertType;
+        }
 
-		//get the image type from the uploaded image
-		$imageFileType = static::get_image_type($base_name);
-		
-		//set dynamic name for the uploaded file
-		$new_name = static::get_dynamic_name($base_name, $imageFileType);
-		
-		//set the target file for uploading
-		$target_file = $target_dir . $new_name;
-	
-		// Check uploaded is a valid image
-		$validate = static::validate_image($files[$input_name]["tmp_name"]);
-		if(!$validate){
-			echo "Doesn't seem like an image file :(";
-			return false;
-		}
-		
-		// Check file size - restrict if greater than 10 MB 
-		$file_size = static::check_file_size($files[$input_name]["size"], 10000000);
-		if(!$file_size){
-			echo "You cannot upload more than 1MB file";
-			return false;
-		}
+        if ($convertType === 'gif') {
+            // Load gambar nya
+            $binary = imagecreatefromstring(file_get_contents($image));
+            // $image = imagecreatefrompng(file_get_contents($binary));
 
-		// Allow certain file formats
-		$file_type = static::check_only_allowed_image_types($imageFileType);
-		if(!$file_type){
-			echo "You cannot upload other than JPG, JPEG, WEBP, and PNG";
-			return false;
-		}
-		
-		if (move_uploaded_file($files[$input_name]["tmp_name"], $target_file)) {
-			//return new image name and image file type;
-			return array($new_name, $imageFileType);
-		} else {
-			echo "Sorry, there was an error uploading your file.";
-		}
+            // Buat nama JPG baru
+            $new_name = $imgName . ".gif";
 
-	}
-	
-	public static function get_image_type($target_file){
-		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-		return $imageFileType;
-	}
-	
-	public static function validate_image($file){
-		$check = getimagesize($file);
-		if($check !== false) {
-			return true;
-		} 
-		return false;
-	}
-	
-	public static function check_file_size($file, $size_limit){
-		if ($file > $size_limit) {
-			return false;
-		}
-		return true;
-	}
-	
-	public static function check_only_allowed_image_types($imagetype){
-		if($imagetype != "jpg" && $imagetype != "png" && $imagetype != "jpeg " && $imagetype != "gif" && $imagetype != "webp") {
-			return false;
-		}
-		return true;
-	}
-	
-	public static function get_dynamic_name($basename, $imagetype){
-		$only_name = basename($basename, '.'.$imagetype); // remove extension
-		$combine_time = $only_name.'_'.time();
-		$new_name = $combine_time.'.'.$imagetype;
-		return $new_name;
-	}
-	
-	public static function remove_extension_from_image($image){
-		$extension = static::get_image_type($image); //get extension
-		$only_name = basename($image, '.'.$extension); // remove extension
-		return $only_name;
-	}
+            // Membuat gambar jpg berwarna putih yang berukuran sama dengan png
+            $gif_image = imagecreatetruecolor(imagesx($binary), imagesy($binary));
+            $white = imagecolorallocate($gif_image, 255, 255, 255);
+            imagefill($gif_image, 0, 0, $white);
+
+            // Timpa gambar putih dengan PNG agar jika ada bagian transparentnya background menjadi putih
+            imagecopy($gif_image, $binary, 0, 0, 0, 0, imagesx($binary), imagesy($binary));
+
+            imagegif($gif_image, $targetDir . $imgName . '.' . $convertType);
+
+            File::delete($image);
+            return $imgName . '.' . $convertType;
+        }
+
+        if ($convertType === 'webp') {
+            $binary = imagecreatefromstring(file_get_contents($image));
+            imagewebp($binary, $targetDir . $imgName . '.' . $convertType);
+
+            File::delete($image);
+            return $imgName . '.' . $convertType;
+        }
+
+        return false;
+    }
+
+    public static function uploadImage($files, $targetDir, $inputName)
+    {
+        $targetDir = public_path('/' . $targetDir . '/');
+
+        $targetDir = "$targetDir/";
+
+        // Get the basename of the uploaded file
+        $baseName = basename($files[$inputName]["name"]);
+
+        // Get the image type from the uploaded image
+        $imageFileType = static::getImageType($baseName);
+
+        // Set dynamic name for the uploaded file
+        $newName = static::getDynamicName($baseName, $imageFileType);
+
+        // Set the target file for uploading
+        $targetFile = $targetDir . $newName;
+
+        // Check if uploaded file is a valid image
+        // $validate = static::validateImage($files[$inputName]["tmp_name"]);
+        // if (!$validate) {
+        //     echo "Doesn't seem like an image file :(";
+        //     return false;
+        // }
+
+        // Check file size - restrict if greater than 10 MB
+        $fileSize = static::checkFileSize($files[$inputName]["size"], 10000000);
+        if (!$fileSize) {
+            echo "You cannot upload more than 1MB file";
+            return false;
+        }
+
+        // Allow certain file formats
+        $fileType = static::checkOnlyAllowedImageTypes($imageFileType);
+        if (!$fileType) {
+            echo "You cannot upload other than JPG, JPEG, WEBP, and PNG";
+            return false;
+        }
+
+        if (move_uploaded_file($files[$inputName]["tmp_name"], $targetFile)) {
+            // Return new image name and image file type
+            return array($newName, $imageFileType);
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+
+    public static function getImageType($targetFile)
+    {
+        $imageFileType = pathinfo($targetFile, PATHINFO_EXTENSION);
+        return $imageFileType;
+    }
+
+    public static function validateImage($file)
+    {
+        $check = getimagesize($file);
+        if ($check !== false) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function checkFileSize($file, $sizeLimit)
+    {
+        if ($file > $sizeLimit) {
+            return false;
+        }
+        return true;
+    }
+
+    public static function checkOnlyAllowedImageTypes($imageType)
+    {
+        if (
+            $imageType != "jpg"
+            && $imageType != "png"
+            && $imageType != "jpeg"
+            && $imageType != "gif"
+            && $imageType != "webp"
+            && $imageType != "HEIC"
+
+        ) {
+            return false;
+        }
+        return true;
+    }
+
+    public static function getDynamicName($basename, $imageType)
+    {
+        $onlyName = basename($basename, '.' . $imageType); // Remove extension
+        $combineTime = $onlyName . '_' . time();
+        $newName = $combineTime . '.' . $imageType;
+        return $newName;
+    }
+
+    public static function removeExtensionFromImage($image)
+    {
+        $extension = static::getImageType($image); // Get extension
+        $onlyName = basename($image, '.' . $extension); // Remove extension
+        return $onlyName;
+    }
 }
