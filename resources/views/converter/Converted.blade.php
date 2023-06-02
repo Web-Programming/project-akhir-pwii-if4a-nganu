@@ -18,6 +18,6 @@
         </td>
     </tr>
     <tr>
-        <td align="center"><a href="index">Convert Another</a></td>
+        <td align="center"><a href="{{ route('converter.index') }}">Convert Another</a></td>
     </tr>
 </table>

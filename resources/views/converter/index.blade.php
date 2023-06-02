@@ -7,7 +7,7 @@
     </tr>
     <tr>
         <td align="center">
-            <h4>Convert Any image to Any image</h4>
+            <h4>Convert Any image to Any image {{ $username }}</h4>
         </td>
     </tr>
     <tr>
