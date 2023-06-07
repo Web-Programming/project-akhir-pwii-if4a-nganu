@@ -9,14 +9,10 @@
 <body>
 	<nav>
 		<h1>IMAGIC</h1>
-		{{-- @if(null === Auth::check())
 			<ul>
 				<li><a href="{{ route('login') }}"><button class="button">LOGIN</button></a></li>
 				<li><a href="{{ route('register') }}"><button class="button">REGISTER</button></a></li>
 			</ul>
-		@else --}}
-			<h2>Hello, {{ $username }}!</h2>
-		{{-- @endisset() --}}
 	</nav>
 	<div class="main">
 		<div class="kiri">
@@ -31,7 +27,7 @@
 				<li><img class ="subicon" src="{{ asset('img/convertcon.svg') }}"><p>The <span class="bold">Convert</span> process only take 0.0001 s</p></li>
 				<li><img class ="subicon" src="{{ asset('img/downloadcon.svg') }}"><p>Your converted image is ready to <span class="bold">Download</span></p></li>
 			</ul>
-			<a href="{{ route('dashboard') }}"><button class="button">LET'S START!</button></a>
+			<a href="{{ route('login') }}"><button class="button">LET'S START!</button></a>
 		</div>
 	</div>
 </body>

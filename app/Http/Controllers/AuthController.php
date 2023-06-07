@@ -8,17 +8,30 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+
+    public function home(){
+        return view("imagic")->with(['username'=>Auth::user()->username,'id'=>Auth::user()->id]);
+    }
+    
+    public function awal(){
+        return view("imagic2");
+    }
+
+
     public function showLoginForm()
     {
+        if (Auth::check()) {
+            return redirect()->route('home');
+        }
         return view('auth.login');
     }
 
     public function login(Request $request)
     {
-        $credentials = $request->only('username', 'password');
+        $credentials = $request->only('id','username', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard');
+            return redirect()->route('home');
         } else {
             return redirect()->back()->withErrors('Invalid credentials');
         }
@@ -26,6 +39,9 @@ class AuthController extends Controller
 
     public function showRegistrationForm()
     {
+        if (Auth::check()) {
+            return redirect()->route('home');
+        }
         return view('auth.register');
     }
 
@@ -46,6 +62,19 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        return view('converter.index')->with('username', Auth::user()->username);
+        if (!Auth::check()) {
+            return redirect()->route('home');
+        }
+        return view('converter.index')->with(['username'=>Auth::user()->username,'id'=>Auth::user()->id]);
     }
+    
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home');
+    }
+
 }

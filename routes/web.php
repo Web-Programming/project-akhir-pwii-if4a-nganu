@@ -2,6 +2,9 @@
 use App\Http\Controllers\indexFileController;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PreConvert;
+use App\Http\Controllers\downloadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view("imagic");
-});
+Route::get('/home', [AuthController::class, 'home'])->name('home')->middleware('auth');
+Route::get('/', [AuthController::class, 'awal'])->name('awal');
+
+// Route::view('/', 'imagic2')->name('awal');
+
 
 Route::get('/convert/{imageName?}/{imageType?}', function ($imageName, $imageType ) {
     return view("converter.convert", ['imageName' => $imageName, 'imageType' => $imageType]);
@@ -28,18 +33,14 @@ Route::get('/halo/{nama}', function ($nama) {
 
 Route::post("/indexFile", [indexFileController::class, 'indexFile']);
 
-use App\Http\Controllers\PreConvert;
 Route::post('/converted-image', [PreConvert::class, 'convert'])->name('converted-image');
 
 // Download routes
-use App\Http\Controllers\downloadController;
 Route::get('/download', [downloadController::class, 'dwnController'])->name('download');
 
 use App\Http\Controllers\shareController;
 Route::get('/share', [shareController::class, 'share'])->name('share');
 
-
-use App\Http\Controllers\AuthController;
 // Login routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
@@ -49,4 +50,7 @@ Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 
 // Dashboard route
-Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

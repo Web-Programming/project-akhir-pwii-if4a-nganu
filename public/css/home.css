@@ -40,6 +40,10 @@ body {
     background-size: cover;
 }
 
+h2 {
+    font-family: Montserrat-Bold;
+}
+
 nav {
     display: flex;
     justify-content: space-between;

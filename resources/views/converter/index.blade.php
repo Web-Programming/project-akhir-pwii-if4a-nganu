@@ -7,7 +7,7 @@
     </tr>
     <tr>
         <td align="center">
-            <h4>Convert Any image to Any image {{ $username }}</h4>
+            <h4>Convert Any image to Any image</h4>
         </td>
     </tr>
     <tr>
@@ -18,6 +18,11 @@
                 <input type="file" name="fileToUpload" id="fileToUpload" />
                 <input type="submit" value="Upload" />
             </form>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit">Logout</button>
+            </form>
+        
         </td>
     </tr>
 </table>
