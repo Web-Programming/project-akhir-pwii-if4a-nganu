@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File; 
+use App\Models\TbImage;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class ImgConverterController extends Controller
@@ -26,8 +30,9 @@ class ImgConverterController extends Controller
             // Convert 100 to 2 digit number by dividing it by 10 and subtracting 10
             $imageQuality = floor(10 - ($imageQuality / 10));
             imagepng($binary, $targetDir . $imgName . '.' . $convertType, $imageQuality);
-            
-            File::delete($image);
+            static::store(request(), $imgName . '.' . $convertType);
+
+            File::delete($imgName);
             return $imgName . '.' . $convertType;
         }
 
@@ -48,6 +53,8 @@ class ImgConverterController extends Controller
             // Timpa gambar putih dengan PNG agar jika ada bagian transparentnya background menjadi putih
             imagecopy($jpg_image, $binary, 0, 0, 0, 0, imagesx($binary), imagesy($binary));
             imagejpeg($jpg_image, $targetDir . $imgName . '.' . $convertType, $imageQuality);
+
+            static::store(request(), $imgName . '.' . $convertType);
 
             // imagejpeg($binary, $targetDir . $imgName . '.' . $convertType, $imageQuality);
             File::delete($image);
@@ -73,6 +80,7 @@ class ImgConverterController extends Controller
             imagecopy($gif_image, $binary, 0, 0, 0, 0, imagesx($binary), imagesy($binary));
 
             imagegif($gif_image, $targetDir . $imgName . '.' . $convertType);
+            static::store(request(), $imgName . '.' . $convertType);
 
             File::delete($image);
             return $imgName . '.' . $convertType;
@@ -81,6 +89,7 @@ class ImgConverterController extends Controller
         if ($convertType === 'webp') {
             $binary = imagecreatefromstring(file_get_contents($image));
             imagewebp($binary, $targetDir . $imgName . '.' . $convertType);
+            static::store(request(), $imgName . '.' . $convertType);
 
             File::delete($image);
             return $imgName . '.' . $convertType;
@@ -135,13 +144,30 @@ class ImgConverterController extends Controller
             echo "Sorry, there was an error uploading your file.";
         }
     }
+    public static function store(Request $request, $filename)
+    {
+        // Menghasilkan path penyimpanan baru
+        $path = 'public/uploads/'. $filename;
+
+        // Mendapatkan ID pengguna yang saat ini masuk
+        $userId = Auth::id();
+
+        // Membuat entri baru di database dengan mengisi id_user
+        TbImage::create([
+            'nama' => $filename,
+            'path' => $path,
+            'id_user' => $userId,
+        ]);
+
+        return "Foto berhasil disimpan di database.";
+    }
+
 
     public static function getImageType($targetFile)
     {
         $imageFileType = pathinfo($targetFile, PATHINFO_EXTENSION);
         return $imageFileType;
     }
-
     public static function validateImage($file)
     {
         $check = getimagesize($file);

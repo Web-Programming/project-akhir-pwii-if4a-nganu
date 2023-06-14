@@ -33,7 +33,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->route('home');
         } else {
-            return redirect()->back()->withErrors('Invalid credentials');
+            return redirect()->back()->withErrors('Username atau password salah');
         }
     }
 
@@ -48,7 +48,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'username' => 'required|unique:tb_user',
+            'username' => 'required|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
 
