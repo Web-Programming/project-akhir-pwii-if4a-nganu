@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PreConvert;
 use App\Http\Controllers\downloadController;
+use App\Http\Controllers\HapusFoto;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +55,4 @@ Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard'
 
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+

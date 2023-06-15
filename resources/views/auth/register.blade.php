@@ -62,9 +62,13 @@
     
             @if($errors->any())
                 <div class="kesalahan">
+                    <ul>
                         @foreach($errors->all() as $error)
+                        <li>
                             {{ $error ."!" }}
+                        </li>
                         @endforeach
+                    </ul>
                 </div>
             @endif
             <input type="submit" class="btn" id="tbl" name="masuk" value = "Login" class="button">

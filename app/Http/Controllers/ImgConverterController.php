@@ -88,6 +88,11 @@ class ImgConverterController extends Controller
 
         if ($convertType === 'webp') {
             $binary = imagecreatefromstring(file_get_contents($image));
+            imagepalettetotruecolor($binary);
+            imagealphablending($binary, true);
+            imagesavealpha($binary, true);
+            
+
             imagewebp($binary, $targetDir . $imgName . '.' . $convertType);
             static::store(request(), $imgName . '.' . $convertType);
 
