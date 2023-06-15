@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="{{ asset('css/style2.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/convert.css') }}" />
 
 @php
     // Define types as an associative array
@@ -12,16 +12,8 @@
 
 <form method="post" action="{{ route('converted-image', ['imageName' => $imageName, 'imageType' => $imageType]) }}">
     @csrf
-    <table width="500" align="center">
-        <tr>
-            <td align="center">
-                File Uploaded, Select below option to convert!
-                <img src="uploads/{{ $imageName }}" alt="Uploaded Image" />
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                Convert To:
+            <img src="uploads/{{ $imageName }}" alt="Uploaded Image" />
+            <div class="bawah"> 
                 <select name="convert_type">
                     @foreach($types as $key => $type)
                         @if($key !== $imageType)
@@ -29,11 +21,8 @@
                         @endif
                     @endforeach
                 </select>
-                <br /><br />
-            </td>
-        </tr>
-        <tr>
-            <td align="center"><button type="submit">Convert</button></td>
-        </tr>
-    </table>
+            </div> 
+            <div class="bawah2"> 
+            <button type="submit" id="tbl">CONVERT</button>
+            </div>
 </form>

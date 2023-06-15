@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PreConvert;
 use App\Http\Controllers\downloadController;
-use App\Http\Controllers\HapusFoto;
+use App\Http\Controllers\HapusFotoController;
+use App\Http\Controllers\ConperterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +33,12 @@ Route::get('/halo/{nama}', function ($nama) {
     echo "<h1?>Halo $nama</h1>";
 });
 
-Route::post("/indexFile", [indexFileController::class, 'indexFile']);
+Route::post("/indexFile", [ConperterController::class, 'indexFile']);
 
-Route::post('/converted-image', [PreConvert::class, 'convert'])->name('converted-image');
+Route::post('/converted-image', [ConperterController::class, 'convert'])->name('converted-image');
 
 // Download routes
-Route::get('/download', [downloadController::class, 'dwnController'])->name('download');
+Route::get('/download', [ConperterController::class, 'dwnController'])->name('download');
 
 use App\Http\Controllers\shareController;
 Route::get('/share', [shareController::class, 'share'])->name('share');
@@ -53,6 +54,10 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.su
 // Dashboard route
 Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 
-
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/hapusFoto/{nama}', [HapusFotoController::class, 'hapusFoto'])->name('hapusFoto');
+
+Route::get('/hapusFoto/{nama}', [ConperterController::class, 'hapusFoto'])->name('hapusFoto');
+
+Route::get('/index/{tipe}', [ConperterController::class, 'indexCtr'])->name('index');

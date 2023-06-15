@@ -75,7 +75,7 @@ class AuthController extends Controller
         if (!Auth::check()) {
             return redirect()->route('home');
         }
-        return view('converter.index')->with(['username'=>Auth::user()->username,'id'=>Auth::user()->id, 'gambarNya' => $result]);
+        return view('converter.dashboard')->with(['username'=>Auth::user()->username,'id'=>Auth::user()->id, 'gambarNya' => $result]);
     }
     
     public function logout(Request $request)

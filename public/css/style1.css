@@ -36,6 +36,7 @@ nav {
     margin-right: 340px;
     background-color: #303841;
     font-family: Bebas;
+    letter-spacing: 2px;
     font-size: 28px;
     color: #fff5e9;
 }
@@ -44,7 +45,7 @@ body {
     background: white;
     justify-content: space-between;
     margin: 0;
-    background-color: #587b91;
+    background-color: #545b64;
 }
 .kanan {
     background: #fff5e9;
@@ -69,7 +70,7 @@ body {
 }
 .gambar {
     padding: 8px;
-    background-color: #587b91;
+    background-color: #545b64;
     margin-right: 340px;
 }
 .kartu {

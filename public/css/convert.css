@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: "Titania";
+    src: url("/font/Titaniar.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-ExtraBold";
+    src: url("/font/Montserrat-ExtraBold.ttf");
+}
+@font-face {
+    font-family: "Montserrat-SemiBold";
+    src: url("/font/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("/font/Montserrat-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Bebas";
+    src: url("/font/Bebas.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url("/font/Montserrat-Bold.ttf");
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(/img/body2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+form {
+    background-color: #303841;
+    display: inline-block;
+    border: 3px solid #303841;
+    border-radius: 13px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+form img {
+    width: 350px;
+}
+
+form .bawah {
+    padding: 0 20px;
+}
+
+form .bawah select {
+    background-color: #587b91;
+    color: #fff5e9;
+    font-family: Montserrat-ExtraBold;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    border: #fff5e9 solid 3px;
+    padding: 10px 20px;
+    border-radius: 13px;
+    margin-top: 20px;
+    font-weight: lighter;
+    background: url(https://cdn-icons-png.flaticon.com/512/8213/8213476.png)
+        no-repeat right;
+    background-size: 20px;
+    background-origin: content-box;
+    -webkit-appearance: none;
+    width: 100%;
+}
+
+form .bawah select option {
+    color: #303841;
+    background-color: #fff5e9;
+    padding: 10px;
+}
+
+#tbl {
+    background-color: #587b91;
+    color: #fff5e9;
+    font-family: Montserrat-ExtraBold;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    border: #fff5e9 solid 3px;
+    padding: 10px 20px;
+    border-radius: 13px;
+    font-weight: lighter;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#tbl:hover {
+    cursor: pointer;
+    background-color: #fff5e9;
+    color: #303841;
+}
+
+#tbl:active {
+    background-color: #fff5e9;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+form .bawah2 {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
