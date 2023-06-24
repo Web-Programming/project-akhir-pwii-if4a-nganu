@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: "Titania";
+    src: url("/font/Titaniar.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-ExtraBold";
+    src: url("/font/Montserrat-ExtraBold.ttf");
+}
+@font-face {
+    font-family: "Montserrat-SemiBold";
+    src: url("/font/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("/font/Montserrat-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Bebas";
+    src: url("/font/Bebas.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url("/font/Montserrat-Bold.ttf");
+}
+
+nav {
+    padding: 15px;
+    margin-right: 340px;
+    background-color: #303841;
+    font-family: Bebas;
+    letter-spacing: 2px;
+    font-size: 28px;
+    color: #fff5e9;
+}
+
+body {
+    background: white;
+    justify-content: space-between;
+    margin: 0;
+    background-color: #545b64;
+}
+.kanan {
+    background: #fff5e9;
+    width: 340px;
+    height: 100%;
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    overflow-x: hidden;
+    padding: 15px 23px 15px 15px;
+    box-sizing: border-box;
+    font-family: bebas;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.kanan h2 {
+    font-size: 45px;
+    text-align: center;
+    color: #303841;
+}
+.gambar {
+    padding: 8px;
+    background-color: #545b64;
+    margin-right: 340px;
+}
+.kartu {
+    display: inline-block;
+    margin: 5px;
+    background-color: #303841;
+    border: 3px solid #303841;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.kartu .cardView {
+    display: block;
+    min-width: 213px;
+    min-height: 213px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.kartu .beten {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.tbl {
+    background-color: #587b91;
+    color: #fff5e9;
+    font-family: Montserrat-ExtraBold;
+    font-size: 14px;
+    background-color: rgba(0, 0, 0, 0);
+    border: #fff5e9 solid 2.5px;
+    padding: 10px 15px;
+    border-radius: 13px;
+    font-weight: lighter;
+    margin: 5px;
+}
+
+.tbl:hover {
+    cursor: pointer;
+    background-color: #fff5e9;
+    color: #303841;
+}
+
+.tbl:active {
+    background-color: #fff5e9;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.toms {
+    background-color: #587b91;
+    width: 100%;
+    color: #303841;
+    font-family: Montserrat-ExtraBold;
+    font-size: 18px;
+    background-color: rgba(0, 0, 0, 0);
+    border: #303841 solid 2.5px;
+    padding: 13px 20px;
+    border-radius: 13px;
+    font-weight: lighter;
+    margin: 5px;
+}
+.toms:hover {
+    cursor: pointer;
+    background-color: #303841;
+    color: #fff5e9;
+}
+
+.toms:active {
+    background-color: #303841;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.3);
+}

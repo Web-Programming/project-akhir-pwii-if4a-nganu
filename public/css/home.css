@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: "Titania";
+    src: url("/font/Titaniar.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-ExtraBold";
+    src: url("/font/Montserrat-ExtraBold.ttf");
+}
+@font-face {
+    font-family: "Montserrat-SemiBold";
+    src: url("/font/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("/font/Montserrat-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Bebas";
+    src: url("/font/Bebas.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url("/font/Montserrat-Bold.ttf");
+}
+
+body {
+    background-color: #4e6e81;
+    background-image: url(/img/wkwk.gif);
+    /*background-position: center;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h2 {
+    font-family: Montserrat-Bold;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 80px;
+    align-items: center;
+    font-family: Titania;
+    color: #fff5e9;
+    margin: auto;
+    max-width: 1550px;
+    /*box-shadow: 0px 0px 5px rgba(0, 0, 0, 50%);*/
+}
+
+nav h1 {
+    font-size: 50px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    width: 260px;
+    justify-content: space-between;
+}
+
+.button {
+    text-decoration: none;
+    color: #fff5e9;
+    font-family: Montserrat-ExtraBold;
+    font-size: 18px;
+    background-color: rgba(0, 0, 0, 0);
+    border: #fff5e9 solid 2.5px;
+    padding: 13px 20px;
+    border-radius: 13px;
+    font-weight: lighter;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #fff5e9;
+    color: #4e6e81;
+}
+
+.button:active {
+    background-color: #fff5e9;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    flex: 1 1;
+    justify-content: space-between;
+    padding: 40px 150px;
+    box-sizing: border-box;
+    max-width: 1600px;
+    margin: auto;
+}
+
+.kiri img {
+    width: 450px;
+}
+
+.kanan {
+    color: #fff5e9;
+}
+
+.kanan h2 {
+    font-family: Bebas;
+    font-weight: lighter;
+    font-size: 80px;
+    line-height: 70px;
+    /*letter-spacing : 3px*/
+}
+
+.kanan .explain {
+    font-family: Montserrat-SemiBold;
+    font-size: 24px;
+}
+
+.kanan .subicon {
+    width: 40px;
+}
+
+.kanan .fitur {
+    margin-top: 10px;
+}
+.kanan .fitur li {
+    display: flex;
+    align-items: center;
+    margin: 18px 0;
+    font-size: 20px;
+    font-family: Montserrat-Medium;
+}
+.kanan .fitur li p {
+    margin-left: 15px;
+}
+
+.kanan .fitur li .bold {
+    font-family: Montserrat-Bold;
+}

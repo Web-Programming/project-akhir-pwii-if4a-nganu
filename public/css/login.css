@@ -1,0 +1,100 @@
+@font-face {
+    font-family: "Titania";
+    src: url("/font/Titaniar.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-ExtraBold";
+    src: url("/font/Montserrat-ExtraBold.ttf");
+}
+@font-face {
+    font-family: "Montserrat-SemiBold";
+    src: url("/font/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("/font/Montserrat-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Bebas";
+    src: url("/font/Bebas.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url("/font/Montserrat-Bold.ttf");
+}
+
+#kontener {
+    width: 350px;
+    padding: 35px;
+    border-radius: 15px;
+    background-color: #303841;
+    margin: auto;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 40%);
+}
+html body {
+    height: 100vh;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color: #587b91;
+    color: #587b91;
+    background-image: url(/img/body2.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#tbl {
+    background-color: #587b91;
+    color: #fff5e9;
+    font-family: Montserrat-ExtraBold;
+    font-size: 18px;
+    background-color: rgba(0, 0, 0, 0);
+    border: #fff5e9 solid 2.5px;
+    padding: 13px 20px;
+    border-radius: 13px;
+    font-weight: lighter;
+}
+
+#tbl:hover {
+    cursor: pointer;
+    background-color: #fff5e9;
+    color: #303841;
+}
+
+.form-label {
+    color: #fff5e9;
+    font-family: Montserrat-Medium;
+}
+
+#kontener .form-control:focus {
+    outline: 3.5px solid #587b91;
+}
+
+::selection {
+    background: #587b91;
+}
+
+#kontener .h1 {
+    text-align: center;
+    color: #fff5e9;
+    margin-bottom: 30px;
+    font-family: Montserrat-ExtraBold;
+}
+
+#kontener .salah {
+    color: #587b91;
+}
+
+.kesalahan {
+    color: #df1d20ff;
+    margin-bottom: 20px;
+}
+
+.isregister {
+    color: #fff5e9;
+    margin-top: 10px;
+}
