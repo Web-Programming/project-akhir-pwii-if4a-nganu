@@ -11,8 +11,8 @@
 </head>
 <body>
     <div id = "kontener">
-        <h1 class="h1">Login</h1>
-        <form method="POST" action="{{ route('login.submit') }}">
+        <h1 class="h1">Login Admin</h1>
+        <form method="POST" action="{{ route('loginadmin.submit') }}">
             @csrf
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Username</label>
@@ -35,8 +35,7 @@
             @endif
             <input type="submit" class="btn" id="tbl" name="masuk" value = "Login" class="button">
         </form>
-            <p class="isregister">Don't have an account? <a href="{{ route('register') }}">Sign up</a></p>
-            <p class="isregister">Login as <a href="{{ route('loginadmin') }}">Admin</a></p>
+            <p class="isregister">Don't have an account? <a href="{{ route('registeradmin') }}">Sign up</a></p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

@@ -16,6 +16,7 @@
 			</ul>
 		@else --}}
 			<h2>Hello, {{ $username }}!</h2>
+			<a href="{{ route('profile') }}"><button class="button">Profile</button></a>
 		{{-- @endisset() --}}
 	</nav>
 	<div class="main">
