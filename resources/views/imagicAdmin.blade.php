@@ -11,7 +11,7 @@
 		<div class="utama">
 			<div class="atas">			
 				<h2>Admin</h2>
-				{{-- <a href="{{ route('home') }}"><img width="50px" src="{{ asset('img/home.svg') }}" alt=""></a> --}}
+				<a href="{{ route('logout') }}"><img width="30px" src="{{ asset('img/logout.svg') }}" alt=""></a>
 			</div>
 			<div class="explains">
                 <table cellspacing = 0>
