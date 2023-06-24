@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\admin;
+use App\Models\TbImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -38,6 +39,10 @@ class AuthController extends Controller
         $user = User::where('username', $nama)->first();
 
         if ($user) {
+             // Delete tb_images table
+             TbImage::where('id_user', $user->id)->delete();
+
+            // Delete the user account
             $user->delete();
             return redirect()->back()->with('success', 'User account deleted successfully.');
         }
@@ -55,7 +60,6 @@ class AuthController extends Controller
         }
         return view("profile")->with(['username'=>Auth::user()->username,'id'=>Auth::user()->id,'jmlhConvert' => $jmlhConvert]);
     }
-        
     public function awal(){
         if (Auth::check()) {
             return redirect()->route('home');
@@ -109,11 +113,11 @@ class AuthController extends Controller
 
     public function dashboard()
     {
+        $result = DB::select("SELECT tb_images.nama FROM tb_images WHERE tb_images.id_user =" . Auth::user()->id);
+
         if (!Auth::check()) {
             return redirect()->route('home');
         }
-
-        $result = DB::select("select tb_images.nama from tb_images where tb_images.id_user =" . Auth::user()->id);
 
         return view('converter.dashboard')->with([
             'username' => Auth::user()->username,
@@ -151,7 +155,9 @@ class AuthController extends Controller
             $user->password = Hash::make($request->new_password);
             $user->save();
 
-            return redirect()->route('profile')->withErrors('Password changed successfully');
+            Auth::logout();
+
+            return redirect()->route('login')->with('success', 'Password changed successfully. Please login with your new password.');
         } else {
             return redirect()->back()->withErrors('Current password is incorrect.');
         }
@@ -200,6 +206,4 @@ class AuthController extends Controller
 
         return redirect()->route('loginadmin')->with('success', 'Registration successful! Please login.');
     }
-
-   
 }
