@@ -9,15 +9,12 @@
 <body>
 	<nav>
 		<h1>IMAGIC</h1>
-		{{-- @if(null === Auth::check())
-			<ul>
-				<li><a href="{{ route('login') }}"><button class="button">LOGIN</button></a></li>
-				<li><a href="{{ route('register') }}"><button class="button">REGISTER</button></a></li>
-			</ul>
-		@else --}}
-			<h2>Hello, {{ $username }}!</h2>
-			<a href="{{ route('profile') }}"><button class="button">Profile</button></a>
-		{{-- @endisset() --}}
+			<div class="ret">
+				<h2>Hello, {{ $username }}!</h2>
+				<a href="{{ route('profile') }}"><img width="30px" src="{{ asset('img/person.svg') }}" alt=""></a>
+				<a href="{{ route('logout') }}"><img width="30px" src="{{ asset('img/logout.svg') }}" alt=""></a>
+			</div>
+			{{-- <a href="{{ route('profile') }}"><button class="button">Profile</button></a> --}}
 	</nav>
 	<div class="main">
 		<div class="kiri">

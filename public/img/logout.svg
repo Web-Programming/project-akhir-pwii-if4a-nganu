@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   fill="#000000"
+   height="800px"
+   width="800px"
+   version="1.1"
+   id="Layer_1"
+   viewBox="0 0 330 330"
+   xml:space="preserve"
+   sodipodi:docname="logout.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs8">
+	
+	
+</defs><sodipodi:namedview
+   id="namedview6"
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1.0"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   showgrid="false"
+   inkscape:zoom="0.59"
+   inkscape:cx="621.18644"
+   inkscape:cy="477.11864"
+   inkscape:window-width="1920"
+   inkscape:window-height="991"
+   inkscape:window-x="-9"
+   inkscape:window-y="-9"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+
+<path
+   style="fill:none;fill-opacity:1;stroke:#fff5e9;stroke-width:45.9983;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke;stop-color:#000000"
+   id="path2828"
+   sodipodi:type="arc"
+   sodipodi:cx="-175.10301"
+   sodipodi:cy="165"
+   sodipodi:rx="95.243118"
+   sodipodi:ry="95.041542"
+   sodipodi:start="0.78539816"
+   sodipodi:end="5.4977871"
+   sodipodi:arc-type="arc"
+   d="m -107.75596,232.20452 a 95.243118,95.041542 0 0 1 -134.69411,0 95.243118,95.041542 0 0 1 0,-134.409037 95.243118,95.041542 0 0 1 134.69411,-5e-6"
+   sodipodi:open="true"
+   transform="rotate(-90)" /><path
+   style="fill:none;stroke:#fff5e9;stroke-width:45.9983;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+   d="M 165,142.63296 V 59.836399"
+   id="path3154"
+   sodipodi:nodetypes="cc" /></svg>

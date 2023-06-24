@@ -55,6 +55,7 @@ class AuthController extends Controller
         }
         return view("profile")->with(['username'=>Auth::user()->username,'id'=>Auth::user()->id,'jmlhConvert' => $jmlhConvert]);
     }
+        
     public function awal(){
         if (Auth::check()) {
             return redirect()->route('home');
@@ -108,11 +109,11 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        $result = DB::select("select tb_images.nama from tb_images where tb_images.id_user =" . Auth::user()->id);
-
         if (!Auth::check()) {
             return redirect()->route('home');
         }
+
+        $result = DB::select("select tb_images.nama from tb_images where tb_images.id_user =" . Auth::user()->id);
 
         return view('converter.dashboard')->with([
             'username' => Auth::user()->username,
@@ -150,9 +151,7 @@ class AuthController extends Controller
             $user->password = Hash::make($request->new_password);
             $user->save();
 
-            Auth::logout();
-
-            return redirect()->route('login')->with('success', 'Password changed successfully. Please login with your new password.');
+            return redirect()->route('profile')->withErrors('Password changed successfully');
         } else {
             return redirect()->back()->withErrors('Current password is incorrect.');
         }

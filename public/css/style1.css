@@ -39,6 +39,9 @@ nav {
     letter-spacing: 2px;
     font-size: 28px;
     color: #fff5e9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 body {

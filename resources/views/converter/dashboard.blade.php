@@ -1,6 +1,11 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/style1.css') }}" />
 <nav>
     <h1>Your converted images</h1>
+
+    <div class="ret">
+        <a href="{{ route('home') }}"><img width="30px" src="{{ asset('img/home.svg') }}" alt=""></a>
+        <a href="{{ route('logout') }}"><img width="30px" src="{{ asset('img/logout.svg') }}" alt=""></a>
+    </div>
 </nav>
 <div class="gambar">
     @foreach ($gambarNya as $gbr)
@@ -30,17 +35,6 @@
             <div class="gif">
                 <a href="{{ route('index', ['tipe' => 'GIF']) }}"><button class="toms">GIF</button></a>
             </div>
-        {{-- <div align="center">
-            <form action="/indexFile" enctype="multipart/form-data" method="post" onsubmit="return checkEmpty()" />
-                @csrf
-                <input type="file" name="fileToUpload" id="fileToUpload"/>
-                <input type="submit" value="Upload" />
-            </form>
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit">Logout</button>
-            </form>
-        </div> --}}
 </div>
 
 <script src="js/script1.js"></script>

@@ -66,7 +66,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.su
 // Dashboard route
 Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/hapusFoto/{nama}', [HapusFotoController::class, 'hapusFoto'])->name('hapusFoto');
 

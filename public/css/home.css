@@ -40,8 +40,15 @@ body {
     background-size: cover;
 }
 
+.ret {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 h2 {
     font-family: Montserrat-Bold;
+    display: inline;
 }
 
 nav {

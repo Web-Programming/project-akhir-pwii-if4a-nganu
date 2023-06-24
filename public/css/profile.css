@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: "Titania";
+    src: url("/font/Titaniar.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-ExtraBold";
+    src: url("/font/Montserrat-ExtraBold.ttf");
+}
+@font-face {
+    font-family: "Montserrat-SemiBold";
+    src: url("/font/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("/font/Montserrat-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Bebas";
+    src: url("/font/Bebas.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url("/font/Montserrat-Bold.ttf");
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4e6e81;
+    background-image: url(/img/body2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.utama {
+    padding: 35px;
+    border-radius: 15px;
+    color: #fff5e9;
+    background-color: #303841;
+}
+
+.atas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.utama h2 {
+    font-family: Bebas;
+    font-weight: lighter;
+    font-size: 60px;
+    line-height: 70px;
+}
+
+.utama .explain {
+    font-family: Montserrat-SemiBold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.button {
+    text-decoration: none;
+    color: #fff5e9;
+    font-family: Montserrat-ExtraBold;
+    font-size: 18px;
+    background-color: rgba(0, 0, 0, 0);
+    border: #fff5e9 solid 2.5px;
+    padding: 13px 20px;
+    border-radius: 13px;
+    font-weight: lighter;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #fff5e9;
+    color: #303841;
+}
+
+.button:active {
+    background-color: #fff5e9;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.berhasil {
+    margin-top: 15px;
+    font-family: Montserrat-SemiBold;
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: rgb(7, 212, 38);
+}
+
+table,
+th,
+td {
+    border: 1px solid #fff5e9;
+    border-collapse: collapse;
+}
+th,
+td {
+    padding: 10px;
+}
+
+.utama .explains {
+    font-family: Montserrat-SemiBold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.buttons {
+    text-decoration: none;
+    color: #fff5e9;
+    font-family: Montserrat-ExtraBold;
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0);
+    border: #fff5e9 solid 2.5px;
+    padding: 8px 15px;
+    border-radius: 13px;
+    font-weight: lighter;
+}
+
+.buttons:hover {
+    cursor: pointer;
+    background-color: #fff5e9;
+    color: #303841;
+}
+
+.buttons:active {
+    background-color: #fff5e9;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
