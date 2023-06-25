@@ -30,7 +30,7 @@ class ImgConverterController extends Controller
             // Convert 100 to 2 digit number by dividing it by 10 and subtracting 10
             $imageQuality = floor(10 - ($imageQuality / 10));
             imagepng($binary, $targetDir . $imgName . '.' . $convertType, $imageQuality);
-            static::store(request(), $imgName . '.' . $convertType);
+            static::store(request(), $imgName . '.' . $convertType, $convertType);
 
             File::delete($imgName);
             return $imgName . '.' . $convertType;
@@ -54,7 +54,7 @@ class ImgConverterController extends Controller
             imagecopy($jpg_image, $binary, 0, 0, 0, 0, imagesx($binary), imagesy($binary));
             imagejpeg($jpg_image, $targetDir . $imgName . '.' . $convertType, $imageQuality);
 
-            static::store(request(), $imgName . '.' . $convertType);
+            static::store(request(), $imgName . '.' . $convertType, $convertType);
 
             // imagejpeg($binary, $targetDir . $imgName . '.' . $convertType, $imageQuality);
             File::delete($image);
@@ -80,7 +80,7 @@ class ImgConverterController extends Controller
             imagecopy($gif_image, $binary, 0, 0, 0, 0, imagesx($binary), imagesy($binary));
 
             imagegif($gif_image, $targetDir . $imgName . '.' . $convertType);
-            static::store(request(), $imgName . '.' . $convertType);
+            static::store(request(), $imgName . '.' . $convertType, $convertType);
 
             File::delete($image);
             return $imgName . '.' . $convertType;
@@ -94,7 +94,7 @@ class ImgConverterController extends Controller
             
 
             imagewebp($binary, $targetDir . $imgName . '.' . $convertType);
-            static::store(request(), $imgName . '.' . $convertType);
+            static::store(request(), $imgName . '.' . $convertType, $convertType);
 
             File::delete($image);
             return $imgName . '.' . $convertType;
@@ -149,7 +149,7 @@ class ImgConverterController extends Controller
             echo "Sorry, there was an error uploading your file.";
         }
     }
-    public static function store(Request $request, $filename)
+    public static function store(Request $request, $filename, $filetype)
     {
         // Menghasilkan path penyimpanan baru
         $path = 'public/uploads/'. $filename;
@@ -160,6 +160,7 @@ class ImgConverterController extends Controller
         // Membuat entri baru di database dengan mengisi id_user
         TbImage::create([
             'nama' => $filename,
+            'tipe' => $filetype,
             'path' => $path,
             'id_user' => $userId,
         ]);

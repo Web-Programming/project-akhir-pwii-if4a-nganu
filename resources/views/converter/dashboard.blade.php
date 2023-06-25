@@ -11,9 +11,8 @@
     @foreach ($gambarNya as $gbr)
         <div class="kartu">
             <div class="cardView" style="background-image: url({{ asset('uploads/'. $gbr->nama) }})"></div>
-            {{-- <img src="{{ asset('uploads/'. $gbr->nama) }}" width="200" class=""> --}}
             <div class="beten">
-                <button class="tbl">CONVERT</button>
+                <p class="tipe">{{ $gbr->tipe }}</p>
                 <a href="{{ route('hapusFoto', ['nama' => $gbr->nama]) }}"><button class="tbl">HAPUS</button></a>     
                 </form>
             </div>

@@ -37,15 +37,12 @@ Route::get('/halo/{nama}', function ($nama) {
     echo "<h1?>Halo $nama</h1>";
 });
 
-Route::post("/indexFile", [ConperterController::class, 'indexFile']);
+Route::post("/indexFile", [ConperterController::class, 'indexFile'])->name('indexFile');
 
 Route::post('/converted-image', [ConperterController::class, 'convert'])->name('converted-image');
 
 // Download routes
 Route::get('/download', [ConperterController::class, 'dwnController'])->name('download');
-
-use App\Http\Controllers\shareController;
-Route::get('/share', [shareController::class, 'share'])->name('share');
 
 // Login admin routes
 Route::get('/loginadmin', [AuthController::class, 'showLoginadminForm'])->name('loginadmin');

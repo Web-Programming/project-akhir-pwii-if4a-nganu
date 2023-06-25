@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tb_images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
+            $table->string('tipe');
             $table->string('path');
             $table->unsignedBigInteger('id_user');
             $table->timestamps();

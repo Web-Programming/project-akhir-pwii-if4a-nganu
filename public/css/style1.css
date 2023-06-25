@@ -99,6 +99,7 @@ body {
     justify-content: space-around;
     margin-top: 5px;
     margin-bottom: 5px;
+    align-items: center;
 }
 
 .tbl {
@@ -123,6 +124,15 @@ body {
 .tbl:active {
     background-color: #fff5e9;
     box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tipe {
+    font-family: Montserrat-Bold;
+    color: #fff5e9;
+    text-transform: uppercase;
+    font-size: 20px;
+    text-align: center;
+    padding-left: 10px;
 }
 
 .toms {

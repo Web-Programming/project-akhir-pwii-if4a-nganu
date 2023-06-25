@@ -9,7 +9,7 @@ class TbImage extends Model
 {
     protected $table = 'tb_images';
 
-    protected $fillable = ['nama', 'path', 'id_user'];
+    protected $fillable = ['nama', 'tipe', 'path', 'id_user'];
 
     public function user()
     {

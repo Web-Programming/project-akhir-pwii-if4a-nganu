@@ -14,6 +14,10 @@ class AuthController extends Controller
 {
 
     public function home(){
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admindashboard');
+        }
+
         if (!Auth::check()) {
             return redirect()->route('awal');
         }
@@ -55,12 +59,20 @@ class AuthController extends Controller
     public function profile(){
         $result = DB::select("SELECT tb_images.nama FROM tb_images WHERE tb_images.id_user =" . Auth::user()->id);
         $jmlhConvert = count($result);
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admindashboard');
+        }
+
         if (!Auth::check()) {
             return redirect()->route('home');
         }
         return view("profile")->with(['username'=>Auth::user()->username,'id'=>Auth::user()->id,'jmlhConvert' => $jmlhConvert]);
     }
     public function awal(){
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admindashboard');
+        }
+
         if (Auth::check()) {
             return redirect()->route('home');
         }
@@ -70,6 +82,10 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admindashboard');
+        }
+
         if (Auth::check()) {
             return redirect()->route('home');
         }
@@ -89,6 +105,10 @@ class AuthController extends Controller
 
     public function showRegistrationForm()
     {
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admindashboard');
+        }
+
         if (Auth::check()) {
             return redirect()->route('home');
         }
@@ -113,7 +133,7 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        $result = DB::select("SELECT tb_images.nama FROM tb_images WHERE tb_images.id_user =" . Auth::user()->id);
+        $result = DB::select("SELECT tb_images.nama, tb_images.tipe FROM tb_images WHERE tb_images.id_user =" . Auth::user()->id);
 
         if (!Auth::check()) {
             return redirect()->route('home');
@@ -123,7 +143,6 @@ class AuthController extends Controller
             'username' => Auth::user()->username,
             'id' => Auth::user()->id,
             'gambarNya' => $result
-        
          ]);
     }
 
@@ -187,7 +206,7 @@ class AuthController extends Controller
     public function showRegistrationadminForm()
     {
         if (Auth::guard('admin')->check()) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admindashboard');
         }
         return view('auth.registeradmin');
     }
